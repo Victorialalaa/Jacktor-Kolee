@@ -7,6 +7,7 @@ public class MoveToClick : MonoBehaviour
     [SerializeField] private float movementSpeed;
     private Vector3 targetPosition;
     private Camera mainCamera;
+    private bool isRunning = true;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class MoveToClick : MonoBehaviour
         {
             CalculateTargetPosition();
             Debug.Log(targetPosition);
+            isRunning = true;
         }
 
         MoveToTarget();
