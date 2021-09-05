@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class MoveToClick : MonoBehaviour
 {
+    public Animator animator;
     [SerializeField] private float movementSpeed;
     private Vector3 targetPosition;
     private Camera mainCamera;
-    private bool isRunning = true;
+  
 
     // Start is called before the first frame update
     void Start()
@@ -23,17 +24,26 @@ public class MoveToClick : MonoBehaviour
         {
             CalculateTargetPosition();
             Debug.Log(targetPosition);
-            isRunning = true;
+            animator.SetBool("isRunning", true);
         }
-
         MoveToTarget();
+
+        //locating Player position
+        GameObject player = GameObject.Find("Player");
+        Transform playerTransform = player.transform;
+        Vector3 position = playerTransform.position;
+
+        if (targetPosition == position)
+        {
+            ReachedDestination();
+        }
     }
 
     private void CalculateTargetPosition()
     {
         var mousePosition = Input.mousePosition;
         var transformedPosition = mainCamera.ScreenToWorldPoint(mousePosition);
-        targetPosition = new Vector3(transformedPosition.x, transformedPosition.y, 0);
+        targetPosition = new Vector3(transformedPosition.x, transformedPosition.y, 0);//gets position
     }
 
     private void MoveToTarget()
@@ -41,7 +51,8 @@ public class MoveToClick : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * movementSpeed);
     }
 
-    public void ReachedDestination()
+    private void ReachedDestination()
     {
+        animator.SetBool("isRunning", false);
     }
 }
