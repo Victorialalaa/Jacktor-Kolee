@@ -8,7 +8,7 @@ public class MoveToClick : MonoBehaviour
     [SerializeField] private float movementSpeed;
     private Vector3 targetPosition;
     private Camera mainCamera;
-  
+
 
     // Start is called before the first frame update
     void Start()
