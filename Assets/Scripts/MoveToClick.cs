@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class MoveToClick : MonoBehaviour
 {
+    public Animator animator;
     [SerializeField] private float movementSpeed;
     private Vector3 targetPosition;
     private Camera mainCamera;
-    private bool isRunning = true;
 
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = Camera.main;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -23,7 +23,7 @@ public class MoveToClick : MonoBehaviour
         {
             CalculateTargetPosition();
             Debug.Log(targetPosition);
-            isRunning = true;
+            animator.setFloat("isRunning", true);
         }
 
         MoveToTarget();
