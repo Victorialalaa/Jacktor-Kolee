@@ -485,7 +485,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ILY VICOTR
+  m_Text: 'ILY VICOTR AND JACK
+
+'
 --- !u!222 &1948637984
 CanvasRenderer:
   m_ObjectHideFlags: 0
