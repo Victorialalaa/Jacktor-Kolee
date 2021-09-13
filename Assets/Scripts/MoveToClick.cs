@@ -4,55 +4,60 @@ using UnityEngine;
 
 public class MoveToClick : MonoBehaviour
 {
-    public Animator animator;
     [SerializeField] private float movementSpeed;
+    public Animator animator;
+    public Rigidbody2D rb;
     private Vector3 targetPosition;
     private Camera mainCamera;
-
+    private Vector3 position;
 
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = Camera.main;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if(Input.GetMouseButtonDown(1))
+        if(Input.GetMouseButtonDown(1))//right click
         {
             CalculateTargetPosition();
             Debug.Log(targetPosition);
             animator.SetBool("isRunning", true);
         }
-        MoveToTarget();
 
         //locating Player position
-        GameObject player = GameObject.Find("Player");
-        Transform playerTransform = player.transform;
-        Vector3 position = playerTransform.position;
+        GameObject player = GameObject.Find("Player");//defines player object
+        Transform playerTransform = player.transform;//player.transform command in variable
+        position = playerTransform.position;//defines players position
 
         if (targetPosition == position)
         {
-            ReachedDestination();
+            animator.SetBool("isRunning", false);
         }
     }
 
+
+    //methods
+
     private void CalculateTargetPosition()
     {
-        var mousePosition = Input.mousePosition;
-        var transformedPosition = mainCamera.ScreenToWorldPoint(mousePosition);
+        var mousePosition = Input.mousePosition;//gets mouse position
+        var transformedPosition = mainCamera.ScreenToWorldPoint(mousePosition);//idk what this does
         targetPosition = new Vector3(transformedPosition.x, transformedPosition.y, 0);//gets position
     }
 
-    private void MoveToTarget()
+
+    private void MoveToTarget()//movement
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * movementSpeed);
+        var moveVector = position;
+        rb.MovePosition(Vector2.MoveTowards(rb.position, targetPosition, Time.deltaTime * movementSpeed));
     }
 
-    private void ReachedDestination()
+    private void FixedUpdate()
     {
-        animator.SetBool("isRunning", false);
+        MoveToTarget();
     }
 }
