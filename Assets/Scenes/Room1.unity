@@ -1493,6 +1493,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1328633803378057448, guid: 16cd2a8fd21fca647bf9d8e36f5d694e, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1328633803378057449, guid: 16cd2a8fd21fca647bf9d8e36f5d694e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1328633803378057454, guid: 16cd2a8fd21fca647bf9d8e36f5d694e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1536,6 +1544,30 @@ PrefabInstance:
     - target: {fileID: 1328633803378057454, guid: 16cd2a8fd21fca647bf9d8e36f5d694e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1328633804925113186, guid: 16cd2a8fd21fca647bf9d8e36f5d694e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1328633804925113212, guid: 16cd2a8fd21fca647bf9d8e36f5d694e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1328633804925113212, guid: 16cd2a8fd21fca647bf9d8e36f5d694e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1328633804925113212, guid: 16cd2a8fd21fca647bf9d8e36f5d694e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1328633804925113212, guid: 16cd2a8fd21fca647bf9d8e36f5d694e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1328633804925113213, guid: 16cd2a8fd21fca647bf9d8e36f5d694e, type: 3}
+      propertyPath: rotateSpeed
+      value: -1200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16cd2a8fd21fca647bf9d8e36f5d694e, type: 3}
