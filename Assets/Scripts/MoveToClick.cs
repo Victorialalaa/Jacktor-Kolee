@@ -58,12 +58,29 @@ public class MoveToClick : MonoBehaviour
 
     private void MoveToTarget()//movement
     {
-        var moveVector = position;
         rb.MovePosition(Vector2.MoveTowards(rb.position, targetPosition, Time.deltaTime * movementSpeed));
     }
 
     private void FixedUpdate()
     {
         MoveToTarget();
+        HandleDash();
+    }
+
+    private void HandleDash()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            float dashDistance = 100f;
+            CalculateTargetPosition();
+            rb.MovePosition(Vector2.MoveTowards(rb.position, targetPosition, Time.deltaTime * dashDistance));
+            //transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * dashDistance);
+            //TryMove()
+        }
+    }
+
+    private bool CanMove(Vector3 dir, float distance)
+    {
+        return Physics2D.Raycast(transform.position, dir, distance).collider == null;
     }
 }
