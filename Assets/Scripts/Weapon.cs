@@ -25,7 +25,7 @@ public class Weapon : MonoBehaviour
     {
         SelfRotation();
 
-        if (Input.GetMouseButtonDown(0) && isClicked == false)
+        if (Input.GetKeyDown("q") && isClicked == false)
         {
             isClicked = true;
             targetPos = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
@@ -37,7 +37,7 @@ public class Weapon : MonoBehaviour
             ThrowWeapon();
         }
 
-        if (Input.GetMouseButtonDown(0) && canCallBack)
+        if (Input.GetKeyDown("q") && canCallBack)
         {
             isDamaged = true;
             returnWeapon = true;
