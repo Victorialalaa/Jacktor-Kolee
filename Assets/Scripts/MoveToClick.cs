@@ -67,15 +67,21 @@ public class MoveToClick : MonoBehaviour
         HandleDash();
     }
 
+    public float cooldownTime = 5;
+    private float nextFireTime = 0;
+
     private void HandleDash()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            float dashDistance = 100f;
-            CalculateTargetPosition();
-            rb.MovePosition(Vector2.MoveTowards(rb.position, targetPosition, Time.deltaTime * dashDistance));
-            //transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * dashDistance);
-            //TryMove()
+        if (Time.time > nextFireTime) {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                float dashDistance = 100f;
+                CalculateTargetPosition();
+                rb.MovePosition(Vector2.MoveTowards(rb.position, targetPosition, Time.deltaTime * dashDistance));
+                //transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * dashDistance);
+                //TryMove()
+                nextFireTime = Time.time + cooldownTime;
+            }
         }
     }
 
