@@ -13,12 +13,18 @@ public class Weapon : MonoBehaviour
     private bool isDamaged;
     private bool canCallBack;
     private bool returnWeapon;
+    private bool isShaked;
+
+    private CameraController cameraController;
+    private GameObject slashEffect;
+    private GameObject weaponReturnEffect;
 
     private Transform playerTrans;
 
     private void Start()
     {
         playerTrans = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        cameraController = FindObjectOfType<CameraController>();
     }
 
     private void Update()
@@ -65,6 +71,8 @@ public class Weapon : MonoBehaviour
             returnWeapon = false;
             isDamaged = false;
             isClicked = false;
+
+            transform.rotation = new Quaternion(0, 0, 0, 0);
         }
     }
 
@@ -79,6 +87,12 @@ public class Weapon : MonoBehaviour
     {
         isRotating = true;
         transform.position = Vector2.MoveTowards(transform.position, playerTrans.position, moveSpeed * 5 * Time.deltaTime);
+
+        if(Vector2.Distance(transform.position, playerTrans.position) <= 0.01f)
+        {
+            StartCoroutine(CallBackEffect());
+           // Instantiate(weaponReturnEffect, transform.position, Quaternion.identity);
+        }
     }
 
     private void SelfRotation()
@@ -91,6 +105,14 @@ public class Weapon : MonoBehaviour
         {
             transform.Rotate(0, 0, 0);
         }
+    }
+
+    IEnumerator CallBackEffect()
+    {
+        cameraController.isShaked = true;
+        cameraController.CameraShake(0.5f);
+        yield return new WaitForSeconds(0.6f);
+        cameraController.isShaked = false;
     }
 
 /*
